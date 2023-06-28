@@ -20,6 +20,7 @@ export async function loadProducts() {
     );
   } else {
     const resData = await response.json();
+    console.log(resData);
     return resData;
   }
 }

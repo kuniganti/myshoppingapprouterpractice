@@ -7,8 +7,8 @@ function ProductsList({ products }) {
       <h1>All Products</h1>
       <ul className={classes.list}>
         {products.map((product) => (
-          <li key={product.id} className={classes.item}>
-            <Link to={`/products/${product.id}`}>
+          <li key={product._id} className={classes.item}>
+            <Link to={`${product._id}`}>
               <img src={product.image} alt={product.title} />
               <div className={classes.content}>
                 <h2>{product.name}</h2>
