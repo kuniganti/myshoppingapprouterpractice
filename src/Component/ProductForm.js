@@ -105,7 +105,7 @@ export async function action({ request, params }) {
     },
     body: JSON.stringify(productData),
   });
-
+  console.log(response);
   if (response.status === 422) {
     return response;
   }

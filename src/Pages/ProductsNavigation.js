@@ -1,6 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useRouteLoaderData } from "react-router-dom";
 import classes from "./ProductsNavigation.module.css";
 function ProductsNavigation() {
+  const token = useRouteLoaderData("root");
   return (
     <header className={classes.header}>
       <nav>
@@ -16,17 +17,19 @@ function ProductsNavigation() {
               All Products
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to={"new"}
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              Add Product
-            </NavLink>
-          </li>
+          {token && (
+            <li>
+              <NavLink
+                to={"new"}
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+                end
+              >
+                Add Product
+              </NavLink>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

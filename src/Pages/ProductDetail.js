@@ -22,8 +22,8 @@ export async function loadProduct({ request, params }) {
     );
   } else {
     const resData = await response.json();
-    console.log(resData);
-    return resData;
+    console.log(resData.product);
+    return resData.product;
   }
 }
 

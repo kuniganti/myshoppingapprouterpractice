@@ -11,10 +11,17 @@ import NewProduct from "./Pages/NewProduct";
 import ProductsRootLayout from "./Pages/ProductsRootLayout";
 import EditProduct from "./Pages/EditProduct";
 import { action as EditOrADDProductAction } from "./Component/ProductForm";
+import AuthenticationPage, {
+  action as LoginAction,
+} from "./Pages/AuthenticationPage";
+import { tokenloader, checkAuthLoader } from "./Util/util";
+import { LogoutAction } from "./Pages/Logout";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    id: "root",
+    loader: tokenloader,
     children: [
       { index: true, element: <Home /> },
       {
@@ -41,6 +48,7 @@ const router = createBrowserRouter([
                 path: "edit",
                 element: <EditProduct />,
                 action: EditOrADDProductAction,
+                loader: checkAuthLoader,
               },
             ],
           },
@@ -50,6 +58,15 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "authentication",
+        element: <AuthenticationPage />,
+        action: LoginAction,
+      },
+      {
+        path: "logout",
+        action: LogoutAction,
       },
     ],
   },

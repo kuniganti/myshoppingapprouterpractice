@@ -1,9 +1,9 @@
-import { Link, useSubmit } from "react-router-dom";
+import { Link, useRouteLoaderData, useSubmit } from "react-router-dom";
 import classes from "./ProductDetail.module.css";
 
 function ProductDetail({ product }) {
   const submit = useSubmit();
-
+  const token = useRouteLoaderData("root");
   function startDeleteHandler() {
     const proceed = window.confirm(
       "Are you sure you want to delete the product?"
@@ -20,10 +20,12 @@ function ProductDetail({ product }) {
         <h1>{product.name}</h1>
         <time>{product.Price}</time>
         <p>{product.Category}</p>
-        <menu className={classes.actions}>
-          <Link to="edit">Edit</Link>
-          <button onClick={startDeleteHandler}>Delete</button>
-        </menu>
+        {token && (
+          <menu className={classes.actions}>
+            <Link to="edit">Edit</Link>
+            <button onClick={startDeleteHandler}>Delete</button>
+          </menu>
+        )}
       </article>
     </>
   );
